@@ -700,6 +700,19 @@ body::before {
   border: 1px solid rgba(99, 102, 241, 0.15);
 }
 
+.figma-embed-container {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  transition: var(--transition);
+}
+
+.figma-embed-container:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--shadow-glow);
+}
+
 /* ========== CERTIFICATIONS ========== */
 .cert-grid {
   display: grid;
