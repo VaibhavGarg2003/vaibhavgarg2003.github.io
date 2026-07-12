@@ -641,6 +641,43 @@ body::before {
   opacity: 1;
 }
 
+/* Cursor-following spotlight (position set from js/app.js) */
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(99, 102, 241, 0.08), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.project-card:hover::after {
+  opacity: 1;
+}
+
+/* Full-width card (used for the UI/UX case study) */
+.project-card-wide {
+  grid-column: 1 / -1;
+}
+
+.project-card-wide .project-top {
+  margin-bottom: 10px;
+}
+
+.project-card-wide .project-desc {
+  margin-bottom: 12px;
+  flex-grow: 0;
+}
+
+.project-card-wide .project-tech {
+  margin-bottom: 20px;
+}
+
+.project-folder-accent {
+  color: var(--accent-color);
+}
+
 .project-top {
   display: flex;
   justify-content: space-between;
@@ -706,6 +743,11 @@ body::before {
   overflow: hidden;
   border: 1px solid var(--glass-border);
   transition: var(--transition);
+}
+
+.figma-embed-container iframe {
+  display: block;
+  border: none;
 }
 
 .figma-embed-container:hover {
@@ -976,6 +1018,29 @@ footer {
 
   .cert-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ========== REDUCED MOTION ========== */
+/* Respects the OS-level "reduce motion" accessibility setting */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .delay-1, .delay-2, .delay-3 {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .cursor {
+    animation: none;
+  }
+
+  #particles-canvas {
+    display: none;
   }
 }
 

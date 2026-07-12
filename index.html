@@ -3,22 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vaibhav Garg — B.Tech Computer Science student specializing in Python, Data Science, Machine Learning, and AI. Explore projects, skills, and open-source contributions.">
+    <meta name="description" content="Vaibhav Garg — Final-year B.Tech Computer Science student specializing in Python, Data Science, and Machine Learning. Projects, skills, and contact.">
+    <meta name="author" content="Vaibhav Garg">
+
+    <!-- Social sharing preview (shows when you paste the link on LinkedIn / WhatsApp) -->
+    <meta property="og:title" content="Vaibhav Garg | Software Developer & Data Scientist">
+    <meta property="og:description" content="Final-year CS student building ML, data, and LLM-powered applications. Open to Data Science and Software Engineering roles.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+
     <title>Vaibhav Garg | Software Developer & Data Scientist</title>
+
+    <!-- Favicon (inline SVG "V" — no extra file needed) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23030712'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='36' font-weight='800' fill='%236366f1' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+    <meta name="theme-color" content="#030712">
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- If JavaScript is disabled, still show all content -->
+    <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 <body>
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scroll-progress"></div>
 
     <!-- Particle Canvas -->
-    <canvas id="particles-canvas"></canvas>
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
 
-    <!-- Header -->
+    <!-- ════════════════════════════════════════════════════════════
+         NAVBAR — to add a nav item, copy one <li> line below
+         ════════════════════════════════════════════════════════════ -->
     <header class="navbar" id="navbar">
         <div class="container">
             <a href="#" class="logo">Vaibhav<span>.</span></a>
@@ -41,34 +59,42 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- ════════════════════════════════════════════════════════════
+             HERO — edit your intro line, summary, and the rotating
+             phrases (those live in js/app.js, near the top)
+             ════════════════════════════════════════════════════════════ -->
         <section id="hero" class="hero section">
             <div class="container">
                 <div class="hero-content reveal">
-                    <span class="greeting">Hi, my name is</span>
+                    <span class="greeting">Final-year CS undergrad · Delhi, India</span>
                     <h1 class="name">Vaibhav Garg.</h1>
                     <h2 class="role">I <span id="typed-text"></span><span class="cursor">|</span></h2>
                     <p class="summary delay-1">
-                        I am a Final Year B.Tech student from GGSIPU with strong proficiency in Python development, Data Analytics, and Data Science. I combine technical expertise with an analytical mindset to build effective, innovative solutions.
+                        I'm a final-year B.Tech Computer Science student at GGSIPU. I work mainly in Python — building machine-learning models, data pipelines, and LLM-powered tools — and I care about shipping things that work end to end, not just in a notebook.
                     </p>
                     <div class="hero-cta reveal delay-2">
                         <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View My Work</a>
                         <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Get In Touch</a>
-                        <a href="Resume_Vaibhav_updated.pdf" class="btn btn-ghost" download><i class="fas fa-download"></i> Resume</a>
+                        <a href="Vaibhav_Garg_Resume.pdf" class="btn btn-ghost" download><i class="fas fa-download"></i> Resume</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- ════════════════════════════════════════════════════════════
+             ABOUT — plain paragraphs; edit freely
+             ════════════════════════════════════════════════════════════ -->
         <section id="about" class="about section">
             <div class="container reveal">
                 <h2 class="section-title"><span class="section-number">01.</span> About Me</h2>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>I am an enthusiastic software developer who combines technical expertise with an analytical mindset to create effective solutions. I am keen to contribute to innovative projects and grow in fast-paced, technology-oriented environments.</p>
-                        <p>Currently in my final year pursuing <strong>Bachelor of Technology in Computer Science</strong> from Dr. Akhilesh Das Gupta Institute of Professional Studies under Guru Gobind Singh Indraprastha University, New Delhi.</p>
-                        <p>My interests span across <strong>AI & Machine Learning</strong>, <strong>Data Science</strong>, <strong>Open-Source Development</strong>, and building high-performance applications. I actively contribute to open-source projects and am a <strong>Google Summer of Code (GSoC) 2026</strong> candidate.</p>
+                        <p>I'm currently finishing my <strong>Bachelor of Technology in Computer Science</strong> at Dr. Akhilesh Das Gupta Institute of Professional Studies (GGSIPU, New Delhi), graduating in 2026.</p>
+                        <p>Most of my work sits at the intersection of <strong>data science and software engineering</strong>: I've built a semantic video-search engine on a full RAG pipeline, a voice assistant with sub-second latency, and ML classifiers for medical prediction. I like problems where the model is only half the job and the engineering around it is the other half.</p>
+                        <!-- TODO: "GSoC candidate" reads as unverified to recruiters. If you have a concrete
+                             open-source contribution (merged PR, org you work with, or a GSoC result), name it
+                             specifically here with a link — that is far stronger. -->
+                        <p>Outside coursework, I contribute to <strong>open-source projects</strong> and I'm actively looking for <strong>Data Science and Software Engineering</strong> roles where I can keep building.</p>
                     </div>
                     <div class="about-highlights">
                         <div class="highlight-card reveal delay-1">
@@ -76,11 +102,11 @@
                             <div class="highlight-label">Major Projects</div>
                         </div>
                         <div class="highlight-card reveal delay-2">
-                            <div class="highlight-number">4+</div>
+                            <div class="highlight-number">4</div>
                             <div class="highlight-label">Certifications</div>
                         </div>
                         <div class="highlight-card reveal delay-3">
-                            <div class="highlight-number">5+</div>
+                            <div class="highlight-number">10+</div>
                             <div class="highlight-label">Technologies</div>
                         </div>
                     </div>
@@ -88,7 +114,10 @@
             </div>
         </section>
 
-        <!-- Education Section -->
+        <!-- ════════════════════════════════════════════════════════════
+             EDUCATION — to add an entry (e.g. 12th grade / internship),
+             copy one whole <div class="timeline-item"> ... </div> block
+             ════════════════════════════════════════════════════════════ -->
         <section id="education" class="education section">
             <div class="container reveal">
                 <h2 class="section-title"><span class="section-number">02.</span> Education</h2>
@@ -107,7 +136,10 @@
             </div>
         </section>
 
-        <!-- Skills Section -->
+        <!-- ════════════════════════════════════════════════════════════
+             SKILLS — each card is one <div class="skill-category">.
+             Add/remove <li> lines inside, or copy a whole card.
+             ════════════════════════════════════════════════════════════ -->
         <section id="skills" class="skills section">
             <div class="container reveal">
                 <h2 class="section-title"><span class="section-number">03.</span> Technical Proficiencies</h2>
@@ -126,7 +158,7 @@
                         <div class="skill-icon-wrapper"><i class="fas fa-brain"></i></div>
                         <h3>AI & Machine Learning</h3>
                         <ul class="skill-list">
-                            <li>Gen AI & LLM</li>
+                            <li>Gen AI & LLMs</li>
                             <li>RAG Pipelines</li>
                             <li>Scikit-learn</li>
                             <li>Embeddings</li>
@@ -135,12 +167,12 @@
                     </div>
                     <div class="skill-category reveal delay-3">
                         <div class="skill-icon-wrapper"><i class="fas fa-tools"></i></div>
-                        <h3>Tools & Frameworks</h3>
+                        <h3>Data & Tools</h3>
                         <ul class="skill-list">
                             <li>Pandas</li>
-                            <li>Excel</li>
                             <li>Power BI</li>
-                            <li>Git Version Control</li>
+                            <li>Excel</li>
+                            <li>Git & GitHub</li>
                             <li>Data Visualization</li>
                         </ul>
                     </div>
@@ -150,15 +182,15 @@
                         <ul class="skill-list">
                             <li>HTML & CSS</li>
                             <li>JavaScript</li>
-                            <li>UI / UX Design</li>
+                            <li>UI / UX Design (Figma)</li>
                         </ul>
                     </div>
                     <div class="skill-category reveal delay-2">
                         <div class="skill-icon-wrapper"><i class="fas fa-sitemap"></i></div>
                         <h3>DSA & Algorithms</h3>
                         <ul class="skill-list">
-                            <li>Proficient in DSA with C++</li>
-                            <li>Data Structures</li>
+                            <li>Data Structures (C++)</li>
+                            <li>Algorithm Design</li>
                             <li>Problem Solving</li>
                         </ul>
                     </div>
@@ -166,7 +198,12 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- ════════════════════════════════════════════════════════════
+             PROJECTS — to add a project, copy one whole
+             <div class="project-card"> ... </div> block and edit it.
+             IMPORTANT: replace each github.com link below with the
+             actual repository URL for that project.
+             ════════════════════════════════════════════════════════════ -->
         <section id="projects" class="projects section">
             <div class="container">
                 <h2 class="section-title reveal"><span class="section-number">04.</span> Featured Projects</h2>
@@ -175,27 +212,35 @@
                     <div class="project-card reveal delay-1">
                         <div class="project-top">
                             <i class="fas fa-folder-open project-folder"></i>
+                            <div class="project-links">
+                                <!-- TODO: replace with this project's actual repo URL -->
+                                <a href="https://github.com/VaibhavGarg2003" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub"><i class="fab fa-github"></i></a>
+                            </div>
                         </div>
                         <h3 class="project-title">Semantic Video Search & Q&A Engine</h3>
                         <p class="project-desc">
-                            End-to-end RAG system enabling natural language querying of video course content. Built automated ingestion pipeline using FFmpeg and OpenAI Whisper (Large-v2) for high-accuracy speech-to-text. Engineered custom semantic search with BGE-M3 embeddings and Cosine Similarity. Integrated Llama 3.1 via Ollama for human-like response synthesis.
+                            End-to-end RAG system for querying video course content in natural language. Automated ingestion with FFmpeg and OpenAI Whisper (Large-v2) for speech-to-text, semantic search built on BGE-M3 embeddings with cosine similarity, and Llama 3.1 (via Ollama) for answer synthesis.
                         </p>
                         <ul class="project-tech">
                             <li>Python</li>
                             <li>OpenAI Whisper</li>
-                            <li>Scikit-Learn</li>
+                            <li>BGE-M3</li>
                             <li>Llama 3.1</li>
-                            <li>RAG Pipeline</li>
+                            <li>RAG</li>
                         </ul>
                     </div>
 
                     <div class="project-card reveal delay-2">
                         <div class="project-top">
                             <i class="fas fa-folder-open project-folder"></i>
+                            <div class="project-links">
+                                <!-- TODO: replace with this project's actual repo URL -->
+                                <a href="https://github.com/VaibhavGarg2003" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub"><i class="fab fa-github"></i></a>
+                            </div>
                         </div>
-                        <h3 class="project-title">Jarvis – Voice-Controlled Virtual Assistant</h3>
+                        <h3 class="project-title">Jarvis – Voice-Controlled Assistant</h3>
                         <p class="project-desc">
-                            Full-featured desktop voice assistant with &lt;1s latency using speech recognition, pyttsx3, and gTTS. Automated 10+ daily tasks — web browsing, live news via APIs, and dynamic GPT-powered conversations. Combined NLP with system control logic for user-friendly voice interaction.
+                            Desktop voice assistant with under one second of response latency, built on SpeechRecognition, pyttsx3, and gTTS. Automates 10+ daily tasks — web browsing, live news via APIs, and GPT-powered conversation — combining NLP with system-control logic.
                         </p>
                         <ul class="project-tech">
                             <li>Python</li>
@@ -209,10 +254,14 @@
                     <div class="project-card reveal delay-3">
                         <div class="project-top">
                             <i class="fas fa-folder-open project-folder"></i>
+                            <div class="project-links">
+                                <!-- TODO: replace with this project's actual repo URL -->
+                                <a href="https://github.com/VaibhavGarg2003" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub"><i class="fab fa-github"></i></a>
+                            </div>
                         </div>
                         <h3 class="project-title">Liver Damage Prediction using ML</h3>
                         <p class="project-desc">
-                            Supervised classification system using Logistic Regression and KNN algorithms. Achieved 86% accuracy with hyperparameter-tuned KNN. Performed comprehensive EDA with Pandas, Seaborn, and Matplotlib. Evaluated with accuracy, confusion matrix, precision, recall, and F1-score. Used train-test split and cross-validation.
+                            Supervised classification with Logistic Regression and KNN, reaching 86% accuracy after hyperparameter tuning. Full EDA with Pandas, Seaborn, and Matplotlib; evaluated with confusion matrix, precision, recall, and F1-score using train-test split and cross-validation.
                         </p>
                         <ul class="project-tech">
                             <li>Python</li>
@@ -223,24 +272,26 @@
                         </ul>
                     </div>
 
-                    <!-- UI/UX Project - Nike Shoe Page -->
-                    <div class="project-card reveal delay-1" style="grid-column: 1 / -1;">
-                        <div class="project-top" style="margin-bottom: 10px;">
-                            <i class="fas fa-layer-group project-folder" style="color: var(--accent-color);"></i>
+                    <!-- UI/UX case study (full-width card with live Figma prototype) -->
+                    <!-- TODO: the title says "Nike Shoe E-Commerce" but the embedded Figma file is
+                         named "Car-Deatil". Make sure this embed is the right prototype, or update
+                         the title/description to match what it actually shows. -->
+                    <div class="project-card project-card-wide reveal delay-1">
+                        <div class="project-top">
+                            <i class="fas fa-layer-group project-folder project-folder-accent"></i>
                         </div>
                         <h3 class="project-title">Nike Shoe E-Commerce Page – UI/UX Design</h3>
-                        <p class="project-desc" style="margin-bottom: 12px;">
-                            An animated and interactive e-commerce landing page design for Nike shoes, focusing on immersive user experience and smooth micro-animations.
+                        <p class="project-desc">
+                            An animated, interactive e-commerce landing page concept designed in Figma, focused on immersive product presentation and smooth micro-interactions. The prototype below is fully clickable.
                         </p>
-                        <ul class="project-tech" style="margin-bottom: 20px;">
+                        <ul class="project-tech">
                             <li>Figma</li>
                             <li>UI/UX Design</li>
                             <li>Prototyping</li>
-                            <li>Animations</li>
+                            <li>Micro-animations</li>
                         </ul>
-                        
                         <div class="figma-embed-container">
-                            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://embed.figma.com/proto/keXjJGxQj0SOo0lEyIMicp/Car-Deatil?node-id=73-106&p=f&scaling=contain&content-scaling=fixed&page-id=73%3A105&starting-point-node-id=73%3A106&embed-host=share" allowfullscreen></iframe>
+                            <iframe title="Interactive Figma prototype" width="100%" height="450" src="https://embed.figma.com/proto/keXjJGxQj0SOo0lEyIMicp/Car-Deatil?node-id=73-106&p=f&scaling=contain&content-scaling=fixed&page-id=73%3A105&starting-point-node-id=73%3A106&embed-host=share" allowfullscreen loading="lazy"></iframe>
                         </div>
                     </div>
 
@@ -248,7 +299,11 @@
             </div>
         </section>
 
-        <!-- Certifications Section -->
+        <!-- ════════════════════════════════════════════════════════════
+             CERTIFICATIONS — copy one <div class="cert-card"> to add.
+             Tip: wrap a card in <a href="certificate-link"> if you have
+             a verifiable credential URL — recruiters click these.
+             ════════════════════════════════════════════════════════════ -->
         <section id="certifications" class="certifications section">
             <div class="container reveal">
                 <h2 class="section-title"><span class="section-number">05.</span> Certifications</h2>
@@ -281,11 +336,13 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- ════════════════════════════════════════════════════════════
+             CONTACT
+             ════════════════════════════════════════════════════════════ -->
         <section id="contact" class="contact section">
             <div class="container reveal">
                 <h2 class="section-title"><span class="section-number">06.</span> Get In Touch</h2>
-                <p class="contact-text">I'm actively exploring opportunities in Data Science, Software Engineering, and open-source development. Whether you have a question, a project idea, or just want to say hi — my inbox is always open!</p>
+                <p class="contact-text">I'm currently looking for internship and entry-level opportunities in Data Science and Software Engineering. If you're hiring, or want to talk about a project or open source, I'd love to hear from you.</p>
 
                 <div class="contact-info">
                     <a href="mailto:mail.vaibhavgarg2003@gmail.com" class="contact-link">
@@ -311,7 +368,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Vaibhav Garg. Crafted with <i class="fas fa-heart" style="color:var(--accent-color);"></i> and code.</p>
+            <p>&copy; 2026 Vaibhav Garg &middot; Designed &amp; built by Vaibhav Garg</p>
         </div>
     </footer>
 

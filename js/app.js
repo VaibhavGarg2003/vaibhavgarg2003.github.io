@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  // Honors the OS "reduce motion" accessibility setting
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   // ============================================================
   // 1. PARTICLE SYSTEM — lightweight dots + connections on canvas
   // ============================================================
@@ -75,19 +78,30 @@ document.addEventListener("DOMContentLoaded", () => {
     animationId = requestAnimationFrame(animateParticles);
   }
 
-  initParticles();
-  animateParticles();
+  if (!reducedMotion) {
+    initParticles();
+    animateParticles();
+
+    // Pause the animation when the tab is hidden (saves battery)
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationId);
+      } else {
+        animateParticles();
+      }
+    });
+  }
 
   // ============================================================
   // 2. TYPING ANIMATION
+  // EDIT HERE: these are the rotating phrases in the hero section
   // ============================================================
   const typedEl = document.getElementById("typed-text");
   const phrases = [
-    "build solutions for the data-driven world.",
-    "develop AI & ML applications.",
-    "love open-source contribution.",
-    "create intelligent data pipelines.",
-    "craft beautiful web experiences."
+    "build ML & data-driven applications.",
+    "design RAG and LLM pipelines.",
+    "turn messy data into decisions.",
+    "contribute to open source."
   ];
   let phraseIdx = 0;
   let charIdx = 0;
@@ -120,7 +134,12 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(typeLoop, DELETE_SPEED);
     }
   }
-  setTimeout(typeLoop, 800);
+
+  if (reducedMotion) {
+    typedEl.textContent = phrases[0];
+  } else {
+    setTimeout(typeLoop, 800);
+  }
 
   // ============================================================
   // 3. SCROLL PROGRESS BAR
@@ -164,9 +183,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Throttled with requestAnimationFrame so scrolling stays smooth
+  let scrollTicking = false;
   window.addEventListener("scroll", () => {
-    updateProgressBar();
-    updateNavbar();
+    if (!scrollTicking) {
+      scrollTicking = true;
+      requestAnimationFrame(() => {
+        updateProgressBar();
+        updateNavbar();
+        scrollTicking = false;
+      });
+    }
   });
 
   // ============================================================
@@ -205,9 +232,15 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
+      const href = this.getAttribute("href");
+      if (href === "#") {
+        // Bare "#" (the logo) — scroll back to the top
+        window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+        return;
+      }
+      const target = document.querySelector(href);
       if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
+        target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" });
       }
     });
   });
@@ -232,14 +265,19 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
   // ============================================================
-  // 8. TILT EFFECT on project cards (desktop only)
+  // 8. TILT + SPOTLIGHT on project cards (desktop only)
   // ============================================================
-  if (window.matchMedia("(hover: hover)").matches) {
+  if (window.matchMedia("(hover: hover)").matches && !reducedMotion) {
     document.querySelectorAll(".project-card").forEach(card => {
       card.addEventListener("mousemove", (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
+
+        // Spotlight position (used by .project-card::after in style.css)
+        card.style.setProperty("--mx", `${x}px`);
+        card.style.setProperty("--my", `${y}px`);
+
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         const rotateX = ((y - centerY) / centerY) * -4;
