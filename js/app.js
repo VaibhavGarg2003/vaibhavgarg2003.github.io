@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "build ML & data-driven applications.",
     "design RAG and LLM pipelines.",
     "turn messy data into decisions.",
-    "contribute to open source."
+    "care about code that ships."
   ];
   let phraseIdx = 0;
   let charIdx = 0;
