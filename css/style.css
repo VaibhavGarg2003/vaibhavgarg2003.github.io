@@ -384,7 +384,7 @@ body::before {
 /* ========== ABOUT ========== */
 .about-content {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: 48px;
 }
 
@@ -400,7 +400,9 @@ body::before {
 
 .about-highlights {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* minmax(0, …) lets columns shrink below their longest word, so the
+     row never pushes the page wider than a phone screen */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -927,7 +929,6 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
   .about-highlights {
-    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
 }
@@ -960,12 +961,16 @@ footer {
     justify-content: center;
     align-items: center;
     gap: 28px;
-    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* hidden while closed so keyboard users can't tab into off-screen links */
+    visibility: hidden;
+    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), visibility 0s linear 0.4s;
     border-left: 1px solid var(--glass-border);
   }
 
   .nav-links.open {
     right: 0;
+    visibility: visible;
+    transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .nav-links a {
@@ -978,7 +983,6 @@ footer {
   }
 
   .about-highlights {
-    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
   }
 
@@ -1012,8 +1016,23 @@ footer {
 }
 
 @media (max-width: 480px) {
+  /* Small phones: stack the stat cards as rows (number + label side by
+     side) — "CERTIFICATIONS" is too long for a 3-column row */
   .about-highlights {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .highlight-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+    padding: 16px 20px;
+  }
+
+  .highlight-number {
+    margin-bottom: 0;
+    min-width: 64px;
   }
 
   .cert-grid {

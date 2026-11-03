@@ -31,8 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
     update() {
       this.x += this.vx;
       this.y += this.vy;
-      if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-      if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      // Bounce off the edges. Math.abs (not just flipping the sign) keeps
+      // particles from getting stuck off-screen after the window shrinks.
+      if (this.x < 0) this.vx = Math.abs(this.vx);
+      else if (this.x > canvas.width) this.vx = -Math.abs(this.vx);
+      if (this.y < 0) this.vy = Math.abs(this.vy);
+      else if (this.y > canvas.height) this.vy = -Math.abs(this.vy);
     }
     draw() {
       ctx.beginPath();
@@ -111,6 +115,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const PAUSE_END = 2000;
   const PAUSE_START = 400;
 
+  // Reserve enough height for the longest phrase, so the page below doesn't
+  // jump up and down when a phrase wraps onto a second line (mostly on phones).
+  const roleEl = typedEl.parentElement;
+  function reserveRoleHeight() {
+    const shown = typedEl.textContent;
+    roleEl.style.minHeight = "";
+    let tallest = 0;
+    phrases.forEach(p => {
+      typedEl.textContent = p;
+      tallest = Math.max(tallest, roleEl.offsetHeight);
+    });
+    typedEl.textContent = shown;
+    roleEl.style.minHeight = tallest + "px";
+  }
+  reserveRoleHeight();
+  // Re-measure once web fonts load (they change text width) and on resize
+  if (document.fonts) document.fonts.ready.then(reserveRoleHeight);
+  let roleResizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(roleResizeTimer);
+    roleResizeTimer = setTimeout(reserveRoleHeight, 150);
+  });
+
   function typeLoop() {
     const current = phrases[phraseIdx];
     if (!isDeleting) {
@@ -149,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateProgressBar() {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const progress = (scrollTop / scrollHeight) * 100;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
     progressBar.style.width = progress + "%";
   }
 
@@ -208,14 +235,23 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(overlay);
 
   function toggleMenu() {
-    hamburger.classList.toggle("open");
-    navLinksContainer.classList.toggle("open");
-    overlay.classList.toggle("active");
-    document.body.style.overflow = navLinksContainer.classList.contains("open") ? "hidden" : "";
+    const isOpen = navLinksContainer.classList.toggle("open");
+    hamburger.classList.toggle("open", isOpen);
+    overlay.classList.toggle("active", isOpen);
+    hamburger.setAttribute("aria-expanded", String(isOpen));
+    document.body.style.overflow = isOpen ? "hidden" : "";
   }
 
   hamburger.addEventListener("click", toggleMenu);
   overlay.addEventListener("click", toggleMenu);
+
+  // Escape closes the mobile menu
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navLinksContainer.classList.contains("open")) {
+      toggleMenu();
+      hamburger.focus();
+    }
+  });
 
   // Close mobile menu on link click
   navLinksContainer.querySelectorAll("a").forEach(link => {
