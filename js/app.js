@@ -102,9 +102,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // ============================================================
   const typedEl = document.getElementById("typed-text");
   const phrases = [
-    "build ML & data-driven applications.",
+    "build full-stack, AI-powered apps.",
     "design RAG and LLM pipelines.",
-    "turn messy data into decisions.",
+    "build ML & data-driven applications.",
     "care about code that ships."
   ];
   let phraseIdx = 0;

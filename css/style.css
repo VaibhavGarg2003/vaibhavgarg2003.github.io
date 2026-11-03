@@ -604,7 +604,9 @@ body::before {
 /* ========== PROJECTS ========== */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  /* Two columns: normal cards sit side by side, "project-card-wide" spans both.
+     Drops to one column on phones (see the mobile media query). */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -692,14 +694,61 @@ body::before {
   color: var(--primary);
 }
 
-.project-links a {
-  color: var(--text-muted);
-  font-size: 1.2rem;
-  transition: color 0.3s ease;
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
 }
 
-.project-links a:hover {
+/* Small labelled link pills: "Live", "Code", "Notebook" */
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  transition: var(--transition);
+}
+
+.project-link:hover {
   color: var(--primary-light);
+  border-color: var(--glass-border-hover);
+  background: rgba(99, 102, 241, 0.08);
+}
+
+/* Bullet points inside project cards (same style as the resume bullets) */
+.project-points {
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.project-points li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.project-points li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-size: 0.8rem;
+}
+
+.project-points strong {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .project-title {
@@ -758,6 +807,21 @@ body::before {
 }
 
 /* ========== CERTIFICATIONS ========== */
+.cert-verify {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: -32px 0 32px;
+  font-size: 0.95rem;
+  color: var(--primary-light);
+  border-bottom: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.cert-verify:hover {
+  border-bottom-color: var(--primary-light);
+}
+
 .cert-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
